@@ -78,6 +78,8 @@ Vagrant.configure("2") do |config|
     rm /tmp/data/id_ecdsa
     chmod 600 /home/vagrant/.ssh/id_ecdsa
     chown vagrant:vagrant /home/vagrant/.ssh/id_ecdsa
+    key=$(cat /tmp/data/id_ecdsa.pub)
+    echo "$key vagrant" >> /home/vagrant/.ssh/authorized_keys
 
     yum update -y
     yum install -y epel-release
