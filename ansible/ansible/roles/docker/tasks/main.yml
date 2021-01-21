@@ -1,8 +1,27 @@
 - name: Install docker client
   yum:
-    name: docker-ce
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-19.03.14-3.el7.x86_64.rpm
+    - https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-cli-19.03.14-3.el7.x86_64.rpm
+    - https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.4.3-3.1.el7.x86_64.rpm
 - name: Start and enable docker daemon
   systemd:
     name: docker
     state: started
     enabled: yes
+- name: Add docker group
+  group:
+    name: "{{ item.name }}"
+  with_items:
+  - "{{ docker_group }}"
+- name: Add vagrant user to docker group
+  user:
+    name: vagrant
+    group: docker
+    append: yes
+- name: Restart docker daemon
+  systemd:
+    name: docker
+    state: restarted
