@@ -1,0 +1,9 @@
+- name: Install yum packages
+  yum:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - git
+    - screen
+    - vim
+    - zsh
