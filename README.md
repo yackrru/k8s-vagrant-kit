@@ -2,6 +2,7 @@
 Local development environment for K8s user, which configured by Vagrant.
 All boxes are based on `centos/7` and instances by them are set locale to `JP` by default.
 #### Prerequirements
+- VirtualBox
 - Vagrant
 ## Overview
 Directories in this repository are composed of components as follows.
@@ -9,11 +10,13 @@ Directories in this repository are composed of components as follows.
   - **ansible server**
     - ansible 2.9
     - playbooks in this repo are placed in `./ansible/ansible`
-    - The playbooks are mounted to `/home/vagrant/ansible` in the vagrant instance.
+    - The playbooks are mounted to `/home/vagrant/ansible` on the vagrant instance.
 - kubekit
   - **Local development environment for k8s user**
   - The following packages will be installed by `ansible-playbook`
-    - Coming soon
+    - Docker v19.03
+    - kubectl v1.19
+    - Minikube
 - pkg
   - Coming soon
 ## Quick start
@@ -42,4 +45,11 @@ The authenticity of host 'kubekit.localdomain (192.168.10.10)' can't be establis
 Are you sure you want to continue connecting (yes/no)? yes
 
 [vagrant@kubekit ~]$
+```
+#### Do playbook
+```bash
+[vagrant@ansible ~]$ cd ansible
+[vagrant@ansible ansible]$ pwd
+/home/vagrant/ansible
+[vagrant@ansible ansible]$ ansible-playbook -i inventory playbook.yml
 ```
