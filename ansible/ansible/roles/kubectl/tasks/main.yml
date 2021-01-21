@@ -1,0 +1,7 @@
+- name: Download kubectl
+  get_url:
+    url: https://storage.googleapis.com/kubernetes-release/release/v1.19.0/bin/linux/amd64/kubectl
+    dest: /tmp/kubectl
+    mode: 0755
+- name: Move kubectl to bin
+  command: mv /tmp/kubectl /usr/local/bin/kubectl
