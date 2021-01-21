@@ -1,0 +1,10 @@
+- name: Download minikube
+  get_url:
+    url: https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+    dest: /tmp/minikube
+    mode: 0755
+- name: Move minikube to bin
+  command: mv /tmp/minikube /usr/local/bin/minikube
+- name: Install conntrack
+  yum:
+    name: conntrack-tools
