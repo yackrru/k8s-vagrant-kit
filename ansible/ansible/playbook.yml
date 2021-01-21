@@ -1,0 +1,5 @@
+- hosts: kubekit
+  become: yes
+  become_user: root
+  roles:
+  - docker

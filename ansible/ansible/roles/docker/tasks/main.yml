@@ -1,0 +1,8 @@
+- name: Install docker client
+  yum:
+    name: docker-ce
+- name: Start and enable docker daemon
+  systemd:
+    name: docker
+    state: started
+    enabled: yes
